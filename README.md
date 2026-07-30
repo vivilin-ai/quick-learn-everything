@@ -38,6 +38,9 @@
 
 **双模式自适应**：能读写文件时产出落到 `./learning/<topic>/`，跨会话续学（每次先读 `progress.md` 恢复进度）；纯对话环境则全部在对话内给出。
 
+> 📁 `learning/` 已写进 `.gitignore`——学习记录是你的个人产出，不该被提交进代码仓库。
+> 想跨机器保留进度（`progress.md` 是续学的依据），删掉那一行，或 `git add -f learning/<topic>`。
+
 ## 安装
 
 ### Claude Code / Claude 系

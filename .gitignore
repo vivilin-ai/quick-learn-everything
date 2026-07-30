@@ -1,0 +1,8 @@
+# 落盘模式的学习产出。skill 会往 ./learning/<topic-slug>/ 写
+# research-brief.md、resources.md、learning-plan.md、drill-log.md、
+# cheatsheet.md、progress.md —— 这些是使用者的个人学习记录，
+# 不属于 skill 本身，默认不进版本库。
+#
+# 想跨机器 / 跨容器保留自己的学习进度（progress.md 是跨会话续学的依据），
+# 就删掉下面这行，或用 `git add -f learning/<topic>` 单独跟踪某个主题。
+learning/
