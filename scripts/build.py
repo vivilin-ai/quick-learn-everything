@@ -31,17 +31,20 @@ GENERATED_BANNER = (
 )
 
 # 内联进自包含产物的参考文件，顺序即附录顺序。
+# prompts.md 排最前：它是十步的权威规格，纯对话环境下最该先读到。
 REFERENCE_FILES = [
+    "references/prompts.md",
     "references/method.md",
     "references/source-quality.md",
-    "references/prompts.md",
 ]
 
+# 顺序对应十步的产出次序。
 TEMPLATE_FILES = [
+    "references/templates/research-brief.md",
+    "references/templates/resources.md",
     "references/templates/learning-plan.md",
-    "references/templates/glossary.md",
-    "references/templates/sources.md",
-    "references/templates/quiz.md",
+    "references/templates/drill-log.md",
+    "references/templates/cheatsheet.md",
     "references/templates/progress.md",
 ]
 
@@ -178,21 +181,22 @@ def self_contained_body(body: str) -> str:
         "## 参考资料位置\n\n本文件是自包含的：下面提到的所有参考内容都已内联在文末附录中。",
         1,
     )
-    first_tpl = LETTERS[len(REFERENCE_FILES)]
-    last_tpl = LETTERS[len(REFERENCE_FILES) + len(TEMPLATE_FILES) - 1]
-    core = rewrite_ref_links(
-        core,
-        {
-            **{rel: f"文末附录 {LETTERS[i]}" for i, rel in enumerate(REFERENCE_FILES)},
-            "references/templates/*.md": f"文末附录 {first_tpl}–{last_tpl}",
-        },
-    )
     refs, next_idx = build_appendix(REFERENCE_FILES)
     templates, _ = build_appendix(TEMPLATE_FILES, next_idx)
     text = (
         f"{core}\n\n---\n\n# 附录\n\n"
         f"以下内容原本是独立的参考文件，为便于单文件分发已内联于此。\n\n"
         f"{refs}\n\n---\n\n{templates}\n"
+    )
+    # 在拼装完成后统一重写：参考文件彼此之间也会互相引用，逐段重写会漏掉它们。
+    first_tpl = LETTERS[len(REFERENCE_FILES)]
+    last_tpl = LETTERS[len(REFERENCE_FILES) + len(TEMPLATE_FILES) - 1]
+    text = rewrite_ref_links(
+        text,
+        {
+            **{rel: f"附录 {LETTERS[i]}" for i, rel in enumerate(REFERENCE_FILES)},
+            "references/templates/*.md": f"附录 {first_tpl}–{last_tpl}",
+        },
     )
     assert_no_dangling_refs(text, "自包含产物")
     return text
@@ -247,8 +251,9 @@ def build_prompt_full(fields: dict[str, str], body: str) -> str:
 def compact_payload(body: str) -> str:
     """精简版真正会被粘贴的正文：SKILL 正文（去掉可省段落）+ 标记内联的参考段落。"""
     core = strip_compact_markers(apply_compact(body)).strip()
-    core = rewrite_ref_links(core, {rel: "文末附录" for rel in REFERENCE_FILES})
     text = f"{core}\n\n---\n\n# 附录：信源与防幻觉\n\n{compact_includes()}"
+    # 精简版只带 compact:include 的片段，没有编号附录，统一指向文末。
+    text = rewrite_ref_links(text, {rel: "文末附录" for rel in REFERENCE_FILES})
     assert_no_dangling_refs(text, "精简版")
     return text
 
