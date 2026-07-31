@@ -1,6 +1,6 @@
 ---
 name: quick-learn-everything
-description: Rapidly get up to speed on an unfamiliar domain using a ten-step closed loop (multi-perspective STORM research, contradiction mapping, curated resources, a skill ladder, adversarial testing, Feynman loops, and a cheat sheet). Use when the user wants to learn, study, research, or onboard into a new field, technology, industry, or subject; asks for a learning plan, roadmap, or curriculum; says they are a beginner at something; wants to be quizzed or tested on a topic; needs to become conversational before a meeting, interview, or project; or asks "how do I learn X".
+description: Rapidly get up to speed on an unfamiliar domain using a ten-step closed loop (Co-STORM-style multi-perspective research, contradiction mapping, curated resources, a skill ladder, adversarial testing, Feynman loops, and a cheat sheet). Use when the user wants to learn, study, research, or onboard into a new field, technology, industry, or subject; asks for a learning plan, roadmap, or curriculum; says they are a beginner at something; wants to be quizzed or tested on a topic; needs to become conversational before a meeting, interview, or project; or asks "how do I learn X".
 ---
 
 # 快速学习任意领域
@@ -10,7 +10,8 @@ description: Rapidly get up to speed on an unfamiliar domain using a ten-step cl
 方法出处见文末。核心判断来自两处：
 
 - **Rahul（@sairahul1）**：「大多数人只是随意提问，感觉在学习，一周后什么都不记得。真正的学习需要四个要素：**一条路径、一次测试、一次压缩、一个反馈循环**。」
-- **STORM（斯坦福，NAACL）**：问 AI「给我讲讲 X」，得到的永远是大多数人的观点、最常见的框架、最表面的信息。**而一个领域真正的样子，不长在大多数人的观点里。**
+- **多视角（源自斯坦福 OVAL 的 STORM / Co-STORM）**：问 AI「给我讲讲 X」，得到的永远是大多数人的观点、最常见的框架、最表面的信息。**而一个领域真正的样子，不长在大多数人的观点里。**
+  ⚠️ **两者不是一回事**：STORM 是生成文章的 pre-writing 工具；**Co-STORM 才是讲人的学习的那篇，本 skill 移植的机制全部来自它**（详见文末出处）。
 
 十步正是这四个要素的展开：建图（1–4）→ 铺路（5–7，路径）→ 夯实（8–9，测试 + 反馈循环）→ 压缩（10）。
 
@@ -127,7 +128,7 @@ description: Rapidly get up to speed on an unfamiliar domain using a ten-step cl
 
 ### 第 4 步 · 同行评审自检
 
-**斯坦福团队自己承认 STORM 有个已知短板：缺自我批判，容易来源偏差、事实错配。** 这一步就是补它。
+补 STORM 缺自我批判的短板（⚠️ 此说法出自公众号原文，**未在仓库中核实到**）。
 
 对刚才的简报做一次同行评审，认真挑刺：
 
