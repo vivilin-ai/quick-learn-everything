@@ -38,8 +38,9 @@ REFERENCE_FILES = [
     "references/source-quality.md",
 ]
 
-# 顺序对应十步的产出次序。
+# 顺序对应十步的产出次序。mindmap 排最前：它从第 0 步就开始建，贯穿全程。
 TEMPLATE_FILES = [
+    "references/templates/mindmap.md",
     "references/templates/research-brief.md",
     "references/templates/resources.md",
     "references/templates/learning-plan.md",
