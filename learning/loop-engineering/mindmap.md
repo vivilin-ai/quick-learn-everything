@@ -70,7 +70,8 @@
 - **No-progress detection / loop fingerprint** —— 对每步的工具调用+结果做哈希，**连续三次指纹相同 = 卡住了** `[检索]`
 - **Circuit breaker（熔断）** `[检索]`
 - **Human-in-the-loop checkpoint** —— 不可逆操作前卡人工确认 `[检索]`
-- 反例：目标循环没有 max_iterations，**一小时能烧掉 $500** `[检索]`
+- 反例：目标循环没有 max_iterations，**一小时能烧掉 $500** `[检索]`（⭐ 面试可直接引用的具体数字，第 7B 第 4 课练习中确认容易被"几千块，看模型"这类模糊估算替代，要刻意记住原数字）
+- **loopmaxxing vs no-progress detection 的边界（第 7B 第 4 课，练习纠正后确认）**：同一个 PR 被反复打补丁、CI 却一直不过，**不是** loopmaxxing——目标（"CI 变绿"）完全可验证，问题出在**执行一直重复失败模式、没有真正推进**。loopmaxxing 管的是**目标设计**（能不能被判定完成）；no-progress detection 管的是**运行时监控**（有没有在原地打转）。两者容易被混为一谈，但是两个不同的轴 `[用户]`
 
 ### ⚠️ 失败模式
 
