@@ -8,54 +8,36 @@
 
 ## 方法出处
 
-三个来源，权重不同：
+两个来源：**Rahul（@sairahul1）的四要素**给了整套流程的骨架 —— 路径、测试、压缩、反馈循环，缺一个，学习就退化成「感觉在学习」；**Co-STORM** 给了研究和组织知识的机制。
 
-| 来源 | 贡献 |
+### Co-STORM 是什么
+
+斯坦福 OVAL 的工作，EMNLP 2024，论文是《Into the Unknown Unknowns: Engaged Human Learning through Participation in Language Model Agent Conversations》。
+
+它研究的是一件很具体的事：**人怎么在参与 AI 对话的过程中，学到自己原本不知道该问什么的东西。**
+
+「Unknown unknowns」正是陌生领域最难的地方 —— 你不知道自己缺什么，所以也提不出正确的问题。Co-STORM 的解法是把人放进一场多方对话里：
+
+- **多个专家 agent** 各自基于检索到的资料发言，观点并不一致
+- **一个 moderator agent** 专门提出那些「你不知道自己该问」的问题
+- **人可以随时插话**，把话题拽向自己关心的方向
+- 全程维护一张**动态 mind map**，把散落的信息组织成层级概念结构，论文称之为人与系统之间的「共享概念空间」
+
+最后一条是关键：**你带走的不是一段对话，而是一棵结构化的概念树。**
+
+### 借鉴了什么
+
+| 本 skill | 来自 Co-STORM |
 |---|---|
-| **Rahul（@sairahul1）的四要素** | 整体骨架 —— 路径、测试、压缩、反馈循环。缺一个，学习就退化成「感觉在学习」 |
-| **Co-STORM**（斯坦福 OVAL，EMNLP 2024，MIT） | **本 skill 实际移植的机制全部来自它** |
-| **STORM**（斯坦福 OVAL，NAACL 2024） | Co-STORM 的前身。「多视角提问」这个想法的源头，但**它本身不是学习系统** |
+| **第 0 步 热启动** —— 按熟悉度分流，完全陌生的先扫盲 | `warm_start()`：正式对话前先建立基础结构 |
+| **概念树 `mindmap.md`** —— 贯穿十步，自上而下扩展 + 自下而上修剪合并 | `KnowledgeBase.reorganize()` |
+| **检索与降级声明** —— 有检索能力就先检索，没有就明说 | grounded question generation / answering：提问和回答都锚定来源 |
 
-### ⚠️ STORM 和 Co-STORM 不是一回事
+多视角提问这个想法源自 Co-STORM 的前身 **STORM**（NAACL 2024）。本 skill 用的固定五人组是二次改编 —— 原方法是按主题**动态发现**视角，且每个视角背后有真实检索来源。
 
-这两个常被混为一谈（本文档早先的版本就搞错了）。对一个**教人学习**的 skill，差别是决定性的：
+因此有一条限定：**没有真实检索时，「五个视角都同意」不构成证据**，那只是同一个模型的五个样本。skill 在这种环境下会显式打印降级声明，不把它包装成共识。
 
-| | STORM | **Co-STORM** |
-|---|---|---|
-| **论文** | Assisting in Writing Wikipedia-like Articles From Scratch with LLMs（NAACL 2024） | Into the Unknown Unknowns: **Engaged Human Learning** through Participation in LM Agent Conversations（EMNLP 2024） |
-| **目标** | 自动写出带引用的维基式文章 | **让人在参与 agent 对话的过程中学习** |
-| **人的位置** | 不在环里，全自动 | **在环里**，可随时注入发言引导方向 |
-| **核心产物** | 文章（作者明说「不能直接发表」） | **动态 mind map**（人与系统的「共享概念空间」）+ 文章 |
-| **智能体** | writer / expert 模拟对话 | 多加一个 **moderator**，专问「你不知道自己不知道」的问题 |
-| **对学习的适用性** | 间接 —— 产出是**读物**，不是课程 | **直接 —— 论文标题就是 human learning** |
-
-**结论**：STORM 是 pre-writing 工具，Co-STORM 才是这个 skill 的正确血统。
-
-### 本 skill 到底用了什么
-
-| 本 skill 的机制 | 真实来源 |
-|---|---|
-| **第 0 步 热启动**（按熟悉度分流，先扫盲） | **Co-STORM `warm_start()`** |
-| **概念树 `mindmap.md`** + 自上而下扩展 / 自下而上修剪合并 | **Co-STORM `KnowledgeBase.reorganize()`** |
-| **检索与降级声明** | **Co-STORM `grounded_question_generation / answering`** |
-| 第 1 步 五视角 | ⚠️ **二手改编**。灵感来自 STORM 的 perspective-guided question asking，但**固定的五人组是公众号作者的加工** —— STORM 本身按主题**动态发现**视角，且视角背后有真实检索来源 |
-| 第 4 步 同行评审自检 | 公众号作者的补充，不属于任何一篇论文 |
-| 第 5–10 步 | Rahul 的四要素 + 作者的编排 |
-| 7B 逐课执行 / 熟悉度分流 | 本 skill 在真实使用暴露问题后的修订 |
-
-**STORM 的代码和机制，本 skill 一样都没用上。**
-
-### 关于第 1 步的一个重要限定
-
-因为五视角是二手改编、且脱离了检索，所以：
-
-**没有真实检索时，「五个视角都同意」不构成证据** —— 那只是同一个模型的五个样本，反映的是模型先验，不是世界。本 skill 在无检索环境会**显式打印降级声明**。
-
-### 为什么不直接集成 Co-STORM
-
-它是 Python 包（`pip install knowledge-storm`），需要 LM + 检索器 API key。而本 skill 要能在 ChatGPT / WorkBuddy 这类**纯对话环境**跑 —— 那里没有 Python。而且它的产出仍是 `report.md`，还是文章。
-
-**借机制，不借代码。** 仓库：[stanford-oval/storm](https://github.com/stanford-oval/storm)（两者代码同仓，MIT 许可）。
+其余部分来自 Rahul 的四要素、原文作者的编排，以及本 skill 在真实使用中的修订（7B 逐课执行、熟悉度分流）。
 
 ## 十步
 
@@ -65,7 +47,7 @@
 | **一 · 建图** | 1 五视角 STORM | 实践者 / 学者 / 怀疑者 / 经济学家 / 历史学家，五种人看到的根本不是同一个东西 |
 | | 2 矛盾图谱 | 让五个视角互相质疑。**浅调研与深调研的分水岭** |
 | | 3 综合简报 | 收拢成一份任何单一视角都写不出来的简报 |
-| | 4 同行评审自检 | 让 AI 给自己挑刺，补 STORM 缺自我批判的短板 |
+| | 4 同行评审自检 | 让 AI 给自己挑刺 —— 逐条打可靠性分、找出最没把握的结论、补一个会改变结论的视角 |
 | **二 · 铺路** | 5 资源筛选 | **只给 5 个**，外加该躲开的坑和一周路径 |
 | | 6 学习阶梯 | 5 级阶梯，依据维果茨基最近发展区，解决跳级学的问题 |
 | | 7A 排课 | 找出核心 20%，排成 10 次课 |
