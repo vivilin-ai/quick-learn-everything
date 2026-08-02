@@ -102,6 +102,8 @@
 ## 历史先例：Autonomic Computing / MAPE-K `[检索: 历史学家视角]`
 
 - IBM 2001 年提出，核心是 **MAPE-K 循环**：Monitor → Analyze → Plan → Execute + Knowledge `[检索]`
+- **与 agent loop 五部件的对应关系（第 7B 第 9 课）**：Monitor ↔ Verification；Analyze+Plan ↔ 模型的推理决策；Execute ↔ Tools；Knowledge ↔ State/Memory——几乎一一对应，是"这套东西不是新发明"最直接的证据 `[用户]`
+- **易错点**：这波 2026 年热潮的源头帖大概率来自 **LangChain**（agent 框架/编排工具公司），**不是"模型厂商"**——不能把"提出 loop engineering 概念"和"卖 token 赚钱"简单划等号，两者利益结构有交集但不是同一类公司（第 7B 第 9 课练习中出现过这个归因错误，已纠正）`[用户]`
 - 四大「自性」：self-configuration / self-optimization / self-protection / **self-healing** `[检索]`
 - 学界正统路径：把这个反馈回路当**控制论意义上的 control loop**，用控制理论设计安全可预测的控制器 `[检索]`
 - **预测**（历史学家）：「loop engineering」这个**名字**可能 12–24 个月内消失，但**实践**会留下来，融入 Kubernetes reconciliation loop、SRE error budget 这类不叫这个名字的东西里 `[检索]`
