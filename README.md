@@ -76,13 +76,21 @@
 
 ### Claude Code / Claude 系
 
+**在本仓库里直接用** —— clone 下来打开就行，`.claude/skills/` 已经配好（符号链接指向根目录的源文件，不会有副本漂移）：
+
 ```bash
 git clone https://github.com/vivilin-ai/quick-learn-everything.git
-mkdir -p ~/.claude/skills/quick-learn-everything
-cp -r quick-learn-everything/{SKILL.md,references} ~/.claude/skills/quick-learn-everything/
+cd quick-learn-everything    # 说「我想快速入门 XX」即可触发
 ```
 
-只想在某个项目里用就放 `<项目>/.claude/skills/` 下。之后说「我想快速入门 XX」会自动触发。
+**装到全局，任何项目都能用**：
+
+```bash
+mkdir -p ~/.claude/skills/quick-learn-everything
+cp -r SKILL.md references ~/.claude/skills/quick-learn-everything/
+```
+
+**装到你自己的某个项目**：把 `SKILL.md` 和 `references/` 拷进 `<你的项目>/.claude/skills/quick-learn-everything/`。
 
 ### Cursor
 
