@@ -1,15 +1,233 @@
-# 十步原始提示词
+# 原始提示词
 
-下面十段是这套方法的**原始提示词，逐字保留**。它们有两个用途：
+**权威规格。** `SKILL.md` 里每一步的产出要求都源自这里；两处有出入时以本文件为准。
 
-1. **权威规格** —— `SKILL.md` 里每一步的产出要求都源自这里。两处有出入时，以本文件为准
-2. **直接可用** —— 用户想自己手动驱动时，把对应那段拷走，替换 `【】` 里的内容即可
-
-作为 agent 执行时，按这些提示词的要求产出，但**不要把提示词原文念给用户听**。
+作为 agent 执行时按这些要求产出，但**不要把提示词原文念给用户听**。用户想自己手动驱动时，把对应那段拷走，替换 `[topic]` 即可。
 
 ---
 
-## 第 1 步 · 五视角 STORM
+# Rahul（@sairahul1）的六个提示词
+
+> 逐字保留英文原文。原帖的定位：**「Not for getting answers. For actually learning.」**
+>
+> 原文对四要素的表述：
+> → **A path** — so you know what to learn in what order
+> → **A test** — so you find out what you don't actually know
+> → **A compression** — so you can review fast before you need it
+> → **A feedback loop** — so gaps get caught and fixed immediately
+
+## 原文的串联顺序
+
+> → Start with the **Learning Ladder** to see the whole map
+> → Use **20 Hours** to find the core 20% worth focusing on first
+> → **After each study session**, run **Quiz Me Until I Break** to find real gaps
+> → Compress what you've learned into a **One-Page Cheat Sheet** for fast review
+> → Use **Signal in the Noise once, upfront, to pick your 5 resources before you start**
+> → Run the **Feynman Loop** on anything that still feels shaky
+>
+> **Path → test → compress → repeat.**
+
+⚠️ 两处最容易被搞错：**信源要 upfront**（所以本 skill 把它排成第 1 步），**测验是每课后跑**（不是最后考一次大的）。
+
+---
+
+## ① Learning Ladder → 本 skill 第 2 步
+
+```
+I want to learn [topic] step by step, without skipping important foundations.
+
+Act like an expert teacher and skill coach. Break [topic] into 5 clear difficulty levels, from complete beginner to confident practitioner.
+
+For each level, include:
+
+1. Level name
+2. What I should understand at this stage
+3. What mastery looks like at this level
+4. The most important concepts or skills to focus on
+5. One milestone that proves I am ready to move forward
+6. One hands-on exercise or mini-project
+7. Common mistakes learners make at this level
+8. A simple self-check question before moving to the next level
+
+Structure the levels like this:
+- Level 1: Complete Beginner
+- Level 2: Basic Understanding
+- Level 3: Practical User
+- Level 4: Problem Solver
+- Level 5: Confident Practitioner
+
+Keep the explanation practical, beginner-friendly, and focused on real progress.
+```
+
+> 作用：**你永远知道自己站在哪一级、下一步该到哪。** 大多数人学不下去，是因为基础没牢就去啃高级材料。
+
+## ② Learn Anything in 20 Hours → 本 skill 第 3 步
+
+```
+I want to learn [topic] in 20 focused hours.
+
+Act like an expert teacher and learning strategist. Your job is to help me learn the most useful parts first, not everything.
+
+Please do the following:
+
+1. Identify the 20% of concepts, skills, or principles that will give me 80% of the real-world results.
+2. Explain why these core areas matter and how they connect to practical use.
+3. Create a 10-session learning plan, with each session lasting 2 hours.
+4. For every session, include:
+   - Main learning goal
+   - Key concepts to study
+   - One practical exercise or mini-project
+   - One recommended resource, preferably free or beginner-friendly
+   - Expected outcome after completing the session
+5. At the end of each session, give me 5 review questions to test my understanding.
+6. After the full plan, suggest one final project that proves I understand the topic well enough to use it in real life.
+
+Keep the plan beginner-friendly, practical, and focused on fast progress.
+```
+
+> 🚨 **20 focused hours**，**10 sessions × 2 hours each**。不是总共 2 小时——那个误读会让每节课只剩 12 分钟，深度必然不够。时间不足时**减课数，不减每课深度**。
+
+## ③ Quiz Me Until I Break → 本 skill 第 4 步的测验环节（每课后跑）
+
+```
+I just studied [topic], and I want to test how well I really understand it.
+
+Act like a strict but helpful examiner. Your job is to find the edge of my understanding through active recall.
+
+Start by asking me 10 questions, one at a time.
+
+Rules:
+
+1. Make the questions progressively harder:
+   - Questions 1-3: beginner level
+   - Questions 4-6: intermediate level
+   - Questions 7-8: advanced level
+   - Questions 9-10: expert level
+
+2. Ask only one question at a time and wait for my answer.
+
+3. After each answer, do four things:
+   - Grade my answer out of 10
+   - Tell me what I got right
+   - Identify the exact gap, mistake, or weak point
+   - Re-explain only the part I missed in simple language
+
+4. If my answer is weak, ask one follow-up question before moving on.
+
+5. If I answer well, increase the difficulty slightly.
+
+6. At the end, give me:
+   - My final score
+   - My strongest areas
+   - My weakest areas
+   - A short revision plan
+   - 5 final challenge questions to master the topic
+
+Do not give me all answers at once. Make this feel like a real learning interview.
+```
+
+> 🚨 **最容易被违反、危害最大的一条：一次列出所有题、或问完自己把答案写上。** 那等于取消整个环节——测试效应的机制在于用户自己从脑子里往外掏。**问完一题就停止输出。**
+
+## ④ One-Page Cheat Sheet → 本 skill 第 6 步
+
+```
+I want a one-page cheat sheet for [topic].
+
+Act like an expert teacher who can simplify complex ideas into a fast review sheet.
+
+Create a cheat sheet that I can review in 5 minutes before I need to use the topic.
+
+Please include:
+
+1. A short definition of the topic in simple language.
+2. The most important concepts, rules, formulas, or steps.
+3. Clear bullet points instead of long paragraphs.
+4. A simple labeled diagram, flowchart, table, or mental model if it helps explain the topic.
+5. 3-5 concrete examples that show how the topic works in real life.
+6. Common mistakes or confusing parts I should avoid.
+7. A quick "Before You Use This" checklist.
+8. 5 rapid-fire questions to test my memory.
+
+Keep it practical, visual, beginner-friendly, and easy to scan.
+```
+
+> 第 4 项（图 / 流程图 / 表格 / 心智模型）容易被漏掉，而它正是「记结构比记段落牢」的落点。
+
+## ⑤ Signal in the Noise → 本 skill **第 1 步**（前置）
+
+```
+I want to learn [topic] fast, but I do not want to waste time on low-quality resources.
+
+Act like an expert learning curator. Find the 5 highest-leverage resources for learning [topic].
+
+The resources can include books, videos, courses, websites, newsletters, communities, or experts to follow.
+
+For each resource, include:
+
+1. Resource name
+2. Type of resource
+3. Why it is worth my time
+4. What specific part of [topic] it helps me learn
+5. Best learner type for this resource
+6. Difficulty level: beginner, intermediate, or advanced
+7. How I should use it effectively
+8. One warning about what not to waste time on
+
+After the list, rank the resources in the best order to use them.
+
+Then give me a simple 7-day learning path using only these resources.
+
+Focus on quality, clarity, and practical usefulness. I want the signal, not the noise.
+```
+
+> 原文明确要求 **once, upfront, before you start** —— 所以它在本 skill 里是**第 1 步**，不是排在分析之后。
+> 有检索能力时**必须检索出真链接**，不要凭记忆报书名。
+
+## ⑥ Feynman Loop → 本 skill 第 5 步
+
+```
+I want to understand [topic] deeply using the Feynman learning method.
+
+Act like a patient teacher. First, explain [topic] to me in simple language, as if I am 12 years old.
+
+Use:
+- simple words
+- real-life examples
+- analogies
+- no unnecessary jargon
+- short explanations
+
+After explaining, ask me to explain the topic back in my own words.
+
+Then review my explanation and do the following:
+
+1. Identify what I explained correctly.
+2. Find every gap, mistake, confusion, or missing idea.
+3. Re-teach only the parts I got wrong or missed.
+4. Ask me to explain it again in a cleaner way.
+5. Repeat this loop until my explanation is simple, accurate, and complete.
+
+Rules:
+- Do not move forward until my explanation is clear.
+- Do not overload me with extra theory.
+- Correct me gently but clearly.
+- Use examples whenever I am confused.
+- At the end, give me a final clean explanation of [topic] that I can save as notes.
+
+Make this feel like an interactive learning conversation, not a lecture.
+```
+
+> 🚨 **第二个高频失败：写完「请你复述一遍」之后，自己顺手示范了一遍。** 写完提问就停止输出。
+> 最后一条（给一份可存档的干净解释）容易被漏掉。
+
+---
+
+# 可选模块 · 深度调研的中文提示词
+
+> ⚠️ **不属于 Rahul 的原方法。** 这四段出自一篇中文转述文章，作者受斯坦福 STORM 启发自行添加。
+> 默认不跑，且**产出不进考题**。理由见 `references/deep-research.md`。
+
+## 环节一 · 五视角
 
 ```
 我要研究【你的主题】。
@@ -32,11 +250,7 @@
 - 一件只有他会告诉我、其他视角绝不会提的事
 ```
 
-> 跑完会拿到五份完全不同的解读。实践者告诉你学术界脱离实际的地方，怀疑者反手拆实践者的台，经济学家把大家不好意思说的利益关系摆到桌面上，历史学家告诉你这个问题以前上演过、后来怎么收场的。
-
----
-
-## 第 2 步 · 矛盾图谱
+## 环节二 · 矛盾图谱
 
 ```
 基于上面 5 个视角，给我画一张矛盾图：
@@ -47,11 +261,7 @@
 没有任何视角提到的是什么（这可能是整个领域的盲区）。
 ```
 
-> 两个特别值钱的产出：**所有视角都同意的**，连对手都承认，可以放心用；**所有视角都没提的**，很可能是整个领域的盲区，有时反而是最大的发现。
-
----
-
-## 第 3 步 · 综合简报
+## 环节三 · 综合简报
 
 ```
 把 5 个视角和矛盾图综合成一份调研简报：
@@ -62,11 +272,7 @@
 一个前沿问题（它的答案会改变我们对这个主题的全部理解）。
 ```
 
-> 这份简报不是任何单一视角能写出来的：角度全，矛盾明确，每条结论的可信度也标了。
-
----
-
-## 第 4 步 · 同行评审自检
+## 环节四 · 同行评审自检
 
 ```
 现在请你对刚才这份简报做一次同行评审：
@@ -76,147 +282,3 @@
 有没有第 6 个视角是该加进来、加了会改变结论的；
 如果一位斯坦福教授来评审这份简报，会打几分，会让我改什么。
 ```
-
-> 斯坦福团队自己承认 STORM 有个已知短板：缺自我批判，容易来源偏差、事实错配。这一步就是补它。
-
----
-
-## 第 5 步 · 资源筛选
-
-```
-关于【主题】的资源太多了，我不想再收藏了。
-请你当一个只帮我省时间的策展人：
-选出 5 个最值得用的资源（书、视频、课程、社区都行），
-每个说清楚：它为什么比同类强、该怎么用（读/看/练）、
-大概要花多久、我该从它身上拿走的一个关键点；
-再告诉我哪些是被高估的、我该躲开的坑；
-最后把这 5 个排成一条一周能走完的学习路径。
-```
-
-> 大多数学习者手里的资源早就够了，多到根本用不过来，时间全花在收集上，从来没真用过。5 个能真用完就很不错了，收藏夹里那 500 个先让它们躺着。
-
----
-
-## 第 6 步 · 学习阶梯
-
-```
-我想一步一步地学习【主题】，不跳过任何重要的基础。
-
-请你扮演一位专家教师和技能教练，把【主题】分解为 5 个
-清晰的难度级别，从完全初学者到自信的实践者。
-
-每个级别包括：
-1. 级别名称
-2. 这个阶段我应该理解什么
-3. 在这个级别上"掌握"是什么样子
-4. 最需要重点关注的概念或技能
-5. 一个证明我可以进入下一级别的里程碑
-6. 一个动手练习或小型项目
-7. 这个级别的学习者常犯的错误
-8. 进入下一级别前的一个简单自测问题
-
-按这个结构组织级别：
-- 级别 1：完全初学者
-- 级别 2：基本理解
-- 级别 3：实际使用者
-- 级别 4：问题解决者
-- 级别 5：自信的实践者
-
-解释保持实用、对初学者友好，专注于真正的进步。
-```
-
-> 作用只有一个：让用户永远知道自己站在第几级、下一步该到哪。学习最泄气的时候，往往就是不知道自己到哪儿了、还差多远。
-
----
-
-## 第 7 步 · 2 小时啃下核心 20%
-
-```
-我想用 2 个小时学【主题】。
-请先找出能带来 80% 实际效果的那 20% 的概念和技能，
-解释它们为什么是核心；
-然后排成 10 次课的学习计划，每次课包含：
-学习目标、关键概念、一个动手练习、
-一个推荐资源（最好免费）、完成后的预期结果；
-每次课结束，给我 5 个复习题；
-全部结束后，给我一个能证明我真的可以上手用的最终小项目。
-```
-
-> 2 小时学不完一个领域。这个计划的目标是把「能上手干活」的那部分先拿下。
-
----
-
-## 第 8 步 · 考到崩溃
-
-```
-我刚学完【主题】，想测试自己到底理解了多少。
-
-请你扮演一位严格但乐于助人的考官，
-通过主动回忆找出我理解的边界。
-
-从 10 个问题开始，一次只问一个。
-
-规则：
-1. 问题逐渐变难：第 1-3 题初级，第 4-6 题中级，
-   第 7-8 题高级，第 9-10 题专家级。
-2. 一次只问一个问题，等我回答。
-3. 每个回答之后，做四件事：
-   给我的答案打 0 到 10 分；
-   告诉我哪里答对了；
-   指出确切的差距、错误或薄弱点；
-   用简单的语言重新解释我漏掉的部分。
-4. 如果我答得很弱，先追问一个问题，再进入下一题。
-5. 如果我答得很好，稍微增加难度。
-6. 最后给我：最终得分、我最强的领域、我最弱的领域、
-   一个简短的复习计划、5 个最终挑战题。
-
-不要一次给我所有答案。让这像一场真实的学习面试。
-```
-
-> **🚨 执行这一步时最容易犯的错：一次把 10 道题全列出来，或者问完自己把答案写上。** 那等于取消了整个环节——测试效应的机制在于用户自己从脑子里往外掏。**问完一题就停止输出。**
-
----
-
-## 第 9 步 · 费曼循环
-
-```
-我想用费曼学习法吃透【概念】。
-请你当一个有耐心的学习伙伴：
-先用简单的词、生活里的例子把它讲给我听，就当我 12 岁；
-然后让我用自己的话复述一遍；
-接着找出我复述里每一个含糊、跳步、绕不过去的地方，
-只重新教这些部分；
-再让我讲一遍。循环下去，
-直到我的解释简单、准确、完整。
-在我讲清楚之前，别进入新内容。
-```
-
-> **🚨 第二个高频失败：写完「请你复述一遍」之后，自己顺手示范了一遍。** 写完提问就停止输出。
-
----
-
-## 第 10 步 · 一页速查表
-
-```
-给我做一份关于【主题】的一页速查表，
-让我在要用它之前，花 5 分钟就能过完：
-一句大白话定义；
-最重要的概念、规则、公式或步骤，全用短条目，别用长段落；
-3-5 个真实场景的例子；
-新手最容易犯的错、最容易混淆的地方；
-一份"上场前"检查清单；
-最后加 5 个快问快答，测测我还记得多少。
-```
-
-> 人的脑子记结构比记段落牢。学完的东西不压缩，就跟没打包的行李一样，要用的时候满地找。
-
----
-
-## 十步全景
-
-> 1. 对于一个陌生领域，让观点打一架，压成简报，再让它自查一遍；
-> 2. 然后只留 5 个资源，排出阶梯，用 2 小时先啃下核心的 20%；
-> 3. 学完了，让考官把自己考到崩溃，讲不清的地方用费曼循环磨平；
-> 4. 最后，压成一页速查表，随用随取。
->
-> 一个闭环。

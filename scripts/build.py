@@ -31,14 +31,15 @@ GENERATED_BANNER = (
 )
 
 # 内联进自包含产物的参考文件，顺序即附录顺序。
-# prompts.md 排最前：它是十步的权威规格，纯对话环境下最该先读到。
+# prompts.md 排最前：它是六步的权威规格，纯对话环境下最该先读到。
 REFERENCE_FILES = [
     "references/prompts.md",
     "references/method.md",
     "references/source-quality.md",
+    "references/deep-research.md",
 ]
 
-# 顺序对应十步的产出次序。mindmap 排最前：它从第 0 步就开始建，贯穿全程。
+# 顺序对应六步的产出次序。mindmap 排最前：它从第 0 步就开始建，贯穿全程。
 TEMPLATE_FILES = [
     "references/templates/mindmap.md",
     "references/templates/research-brief.md",
